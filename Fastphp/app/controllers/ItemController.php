@@ -9,8 +9,12 @@ class ItemController extends Controller
 {
     /**
      * 首页方法测试框架自定义DB查询
+     * 模型类引用
+     * 如果用注入方式，之前的实例过的数据都会保留存在
+     * 用new重新引用
+     * @param Item $im
      */
-    public function index()
+    public function index(Item $im)
     {
         $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
