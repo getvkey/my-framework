@@ -1,0 +1,28 @@
+{
+    "name": "danny/fastphp",
+    "description": "by yeszao/fastphp thinks",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "getvkey",
+            "email": "ucyour@live.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8.0"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "platform": {
+            "php": "5.4"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app"
+        }
+    }
+}
