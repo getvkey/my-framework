@@ -12,9 +12,8 @@ class ItemController extends Controller
      * 模型类引用
      * 如果用注入方式，之前的实例过的数据都会保留存在
      * 用new重新引用
-     * @param Item $im
      */
-    public function index(Item $im)
+    public function index()
     {
         $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
@@ -31,7 +30,11 @@ class ItemController extends Controller
         $this->render();
     }
 
-
+    /**
+     * 详情
+     *
+     * @param int $id
+     */
     public function detail(int $id)
     {
         $item = (new Item())->where(["id = ?", [$id]])->fetch();
@@ -42,6 +45,10 @@ class ItemController extends Controller
         $this->render();
     }
 
+    /**
+     * 添加
+     *
+     */
     public function add()
     {
         $data['item_name'] = $_POST['value'];
@@ -53,6 +60,11 @@ class ItemController extends Controller
         $this->render();
     }
 
+    /**
+     * 管理
+     *
+     * @param int $id
+     */
     public function manage($id = 0)
     {
         $item = [];
@@ -66,6 +78,10 @@ class ItemController extends Controller
         $this->render();
     }
 
+    /**
+     * 更新
+     *
+     */
     public function update()
     {
         $data = [
@@ -81,6 +97,11 @@ class ItemController extends Controller
         $this->render();
     }
 
+    /**
+     * 删除
+     *
+     * @param null $id
+     */
     public function delete($id = null)
     {
         $count = (new Item())->delete($id);

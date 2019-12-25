@@ -28,8 +28,8 @@ class Db
             $option = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
 
             return self::$pdo = new PDO($dsn, DB_USER, DB_PASS, $option);
-        } catch (PDOException $exception) {
-            exit($exception->getMessage());
+        } catch (PDOException $e) {
+            exit($e->getMessage());
         }
     }
 

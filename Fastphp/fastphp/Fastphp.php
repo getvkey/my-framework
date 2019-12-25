@@ -22,11 +22,11 @@ class Fastphp
      */
     public function run()
     {
-        spl_autoload_register(array($this, 'loadClass'));
-        $this->setRePosting();
-        $this->removeMagicQuotes();
-        $this->unregisterGlobals();
-        $this->setDbConfig();
+        spl_autoload_register(array($this, 'loadClass')); // 自动加载
+        $this->setRePosting();  // 检查开发环境
+        $this->removeMagicQuotes(); // 检查敏感字符并删除
+        $this->unregisterGlobals(); // 判断全局变量是否开启并删除
+        $this->setDbConfig(); // 设置数据库配置常量
         $this->route();
     }
 
@@ -39,22 +39,24 @@ class Fastphp
         $actionName = $this->config['defaultAction'];
         $param = array();
 
-        $url = $_SERVER['REQUEST_URI'];
+        $url = $_SERVER['REQUEST_URI']; // 获取url地址host后面的 http://127.0.0.1:8080/item?dsd=dsd  为：/item?dsd=dsd
 
-        //查找？在url中第一次出现的位置
+        //查找？在url中第一次出现的位置 /item?dsd=dsd 从 / 0开始 = 5
         $position = strpos($url, '?');
-
+        
+        // 如果没有？= /item 如果有？ 截取包括问号后面的不要
         $url = $position === false ? $url : substr($url, 0, $position);
-
+        
         // 使得可以这样访问 index.php/{controller}/{action}
         $position = strpos($url, 'index.php');
+        // 如果有 /index.php/item?dsd=dsd 去掉index.php
         if ($position !== false) {
             $url = substr($url, $position + strlen('index.php'));
         }
-
-        // 删除前后的“/”
+        
+        // 删除前后的“/” = item
         $url = trim($url, '/');
-
+        
         if ($url) {
             // 使用“/”分隔字符串，保存在数组中
             $urlArray = explode('/', $url);
@@ -68,7 +70,7 @@ class Fastphp
             // 移除第一个元素，获取动作名
             array_shift($urlArray);
             $actionName = $urlArray ? $urlArray[0] : $actionName;
-
+            
             // 获取URL参数
             array_shift($urlArray);
             $param = $urlArray ? $urlArray : array();

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * 入口文件
+ */
+
 define('DS', DIRECTORY_SEPARATOR);
 
 //应用目录为当前目录
