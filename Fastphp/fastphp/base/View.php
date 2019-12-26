@@ -63,4 +63,21 @@ class View
             include $defaultFooter;
         }
     }
+
+    /**
+     * 返回json格式
+     *
+     * @param integer $code
+     * @param string $msg
+     * @param array $data
+     * @return void
+     */
+    public function returnJson(int $code, string $msg, array $data)
+    {
+        echo json_encode([
+            'code' => $code,
+            'msg' => $msg,
+            'data' => $data
+        ]);
+    }
 }

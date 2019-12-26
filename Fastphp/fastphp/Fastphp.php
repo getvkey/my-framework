@@ -84,7 +84,7 @@ class Fastphp
         if (!method_exists($controller, $actionName)) {
             exit($actionName . '方法不存在');
         }
-
+        
         // 如果控制器和方法存在，则实例化控制器，因为控制器对象里面还会用到控制器名和方法名，所以实例化传过去
         $dispatch = new $controller($controllerName, $actionName);
 

@@ -7,6 +7,8 @@ use app\models\Item;
 
 class ItemController extends Controller
 {
+    // use BaseTrait;
+
     /**
      * 首页方法测试框架自定义DB查询
      * 模型类引用
@@ -110,6 +112,12 @@ class ItemController extends Controller
         $this->assign('count', $count);
 
         $this->render();
+    }
+
+    public function tests()
+    {
+        
+        return $this->returnJson(1, '获取数据成功', ['name' => 'peter', 'addr' => 'shenzhen']);
     }
 
 }

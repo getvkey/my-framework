@@ -45,4 +45,17 @@ class Controller
     {
         $this->_view->render();
     }
+
+    /**
+     * 返回json格式
+     *
+     * @param integer $code
+     * @param string $msg
+     * @param array $data
+     * @return void
+     */
+    public function returnJson(int $code, string $msg, array $data)
+    {
+        $this->_view->returnJson($code, $msg, $data);
+    }
 }
